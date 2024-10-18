@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include "../osrms_File/Osrms_File.c"
+#include "../osrms_File/Osrms_File.h"
 #include "./osrms_API.h"
 
 // Variable global para el archivo de memoria
