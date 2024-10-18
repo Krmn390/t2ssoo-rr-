@@ -17,33 +17,21 @@ typedef struct memoria {
 
 
 Memoria memoria;
-// Función para montar la memoria
-void  os_mount (char * memory_path) {
-    // Abre el archivo en modo binario
-    FILE *file = fopen(memory_path, "rb");
-    if (!file) {
-        perror("Error al abrir el archivo");
-        return false;
-    }
 
-    // Leer la Tabla de PCBs
-    fread(&memoria.tabla_pcbs, sizeof(Tabla_PCBs), 1, file);
+char global_memory_path[256]; // Tamaño máximo de la ruta
 
-    // Leer el Bitmap de Tablas de Páginas
-    fread(&memoria.bitmap_tablas_paginas, sizeof(Bit_map), 1, file);
+// Función para montar la memoria, establece la ruta como global
+void os_mount(char *memory_path) {
+    // Copiamos la ruta de memory_path a la variable global
+    strncpy(global_memory_path, memory_path, sizeof(global_memory_path) - 1);
+    
+    global_memory_path[sizeof(global_memory_path) - 1] = '\0'; 
 
-    // Leer el Espacio de Tablas de Segundo Orden
-    fread(&memoria.espacio_tablas_2do_orden, sizeof(Espacio_Tablas_2do_Orden), 1, file);
-
-    // Leer el Frame Bitmap
-    fread(&memoria.frame_bitmap, sizeof(Frame_Bitmap), 1, file);
-
-    // Leer los Frames (216 frames de 32 KB)
-    for (int i = 0; i < 65536; i++) {
-        fread(&memoria.frames[i], sizeof(Frames), 1, file);
-    }
-
-    // Cierra el archivo
-    fclose(file);
+    printf("Memoria montada en: %s\n", global_memory_path);
 }
 
+
+void os_ls_process(){
+    for (int i= 0; i< )
+
+}
